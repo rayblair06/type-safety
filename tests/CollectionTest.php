@@ -2,10 +2,10 @@
 
 namespace Rayblair\CollectionType\Tests;
 
-use TypeError;
 use ArgumentCountError;
 use PHPUnit\Framework\TestCase;
 use Rayblair\CollectionType\Tests\Classes\FooCollection;
+use TypeError;
 
 class CollectionTest extends TestCase
 {

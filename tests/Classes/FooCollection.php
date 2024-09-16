@@ -2,7 +2,6 @@
 
 namespace Rayblair\CollectionType\Tests\Classes;
 
-use Rayblair\CollectionType\Tests\Classes\FooType;
 use Rayblair\CollectionType\CollectionType;
 
 /**

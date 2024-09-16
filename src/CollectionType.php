@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Rayblair\CollectionType;
 
-use ArrayObject;
 use ArgumentCountError;
+use ArrayObject;
 use TypeError;
 
 /**
