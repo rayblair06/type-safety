@@ -1,44 +1,95 @@
-# :package_description
+# CollectionType
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![Tests](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This package can be used as to scaffold a framework agnostic package. Follow these steps to get started:
-
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this skeleton
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+This package provides type-safe collections in PHP, allowing you to manage collections of a specific object type. It enforces runtime type safety by ensuring that only instances of the defined class can be added to the collection. This makes it easier to work with strongly-typed collections and ensures data integrity throughout your application.
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via Composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require rayblair/collection-type
 ```
 
 ## Usage
 
+Here’s an example demonstrating how to use the `CollectionType` class with a custom object type:
+
+### Define a Custom Type
+
+First, create a class to define the objects you want to store in the collection. In this example, we define a `FooType` class with `id` and `name` properties.
+
 ```php
-$skeleton = new VendorName\Skeleton();
-echo $skeleton->echoPhrase('Hello, VendorName!');
+class FooType
+{
+    public function __construct(public int $id, public string $name)
+    {}
+}
+```
+
+### Create a Type-Safe Collection
+
+Now, create a collection class that extends `CollectionType` and specify the object type it will hold. In this case, `FooCollection` is defined to hold `FooType` objects.
+
+```php
+class FooCollection extends CollectionType
+{
+    public $type = FooType::class;
+}
+```
+
+### Adding Items to the Collection
+
+Once your collection is set up, you can start adding items to it. The collection will automatically validate that each item is of the correct type.
+
+```php
+$collection = new FooCollection();
+
+$collection[] = ['id' => 1, 'name' => 'Ray'];
+$collection[] = ['id' => 2, 'name' => 'Bob'];
+$collection[] = ['id' => 3, 'name' => 'Alice'];
+
+print_r($collection->toArray());
+```
+
+### Output:
+
+```php
+[
+    ['id' => 1, 'name' => 'Ray'],
+    ['id' => 2, 'name' => 'Bob'],
+    ['id' => 3, 'name' => 'Alice'],
+]
+```
+
+## Handling Invalid Data
+
+The `CollectionType` class enforces strict type safety, so invalid data will result in errors.
+
+### Example 1: Invalid Type
+
+If you try to add an item where the `id` is not an integer, a `TypeError` will be thrown.
+
+```php
+$collection = new FooCollection();
+
+// This will throw a TypeError because the 'id' should be an integer.
+$collection[] = ['id' => '4', 'name' => 'Dave'];
+```
+
+### Example 2: Missing Parameters
+
+If you omit required parameters, such as `id`, an `ArgumentCountError` will be thrown.
+
+```php
+$collection = new FooCollection();
+
+// This will throw an ArgumentCountError because the 'id' is missing.
+$collection[] = ['name' => 'Gary'];
 ```
 
 ## Testing
+
+To run the test suite and ensure everything is working as expected, use:
 
 ```bash
 composer test
@@ -46,21 +97,21 @@ composer test
 
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+For details on recent changes and updates, please see the [CHANGELOG](CHANGELOG.md).
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
+We welcome contributions! For details on how to contribute, please refer to our [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) guidelines.
 
 ## Security Vulnerabilities
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+If you discover any security-related issues, please review our [security policy](../../security/policy) for instructions on how to report vulnerabilities.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+-   [Ray Blair](https://github.com/rayblair)
+-   [All Contributors](../../contributors)
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+This package is open-source and licensed under the MIT License. For more information, please see the [LICENSE file](LICENSE.md).
