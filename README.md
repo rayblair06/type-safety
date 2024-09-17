@@ -14,7 +14,35 @@ composer require rayblair/type-safety
 
 Here’s an example demonstrating how to use the `ArrayType` class with a custom object type:
 
-### Define a Custom Type
+### Define a Types
+
+```
+# Class Type Checking
+$class = new FooType(1, 'Ray');
+$class = type($class, FooType::class);
+
+# String Type Checking
+$string = 'Foo';
+$string = type($string, Type::STRING);
+
+# Integer Type Checking
+$integer = 1;
+$integer = type($integer, Type::INTEGER);
+
+# Float Type Checking
+$float = 1.23;
+$float = type($float, Type::FLOAT);
+
+# Boolean Type Checking
+$boolean = true;
+$boolean = type($boolean, Type::BOOLEAN);
+
+# Array Type Checking
+$array = [1,2,3,4];
+$array = type($array, Type::ARRAY);
+```
+
+### Define an Array Type
 
 First, create a class to define the objects you want to store in the array. In this example, we define a `FooType` class with `id` and `name` properties.
 
