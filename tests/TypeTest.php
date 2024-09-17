@@ -19,11 +19,11 @@ class TypeTest extends TestCase
      */
     public function it_can_create_class_type()
     {
-        $variable = new FooType(1, 'Ray');
+        $class = new FooType(1, 'Ray');
 
-        $variable = type($variable, FooType::class);
+        $class = type($class, FooType::class);
 
-        $this->assertInstanceOf(FooType::class, $variable);
+        $this->assertInstanceOf(FooType::class, $class);
     }
 
     /**
@@ -33,12 +33,12 @@ class TypeTest extends TestCase
      */
     public function it_can_create_string_type()
     {
-        $variable = 'Foo';
+        $string = 'Foo';
 
-        $variable = type($variable, Type::STRING);
+        $string = type($string, Type::STRING);
 
         $this->assertIsString(
-            $variable,
+            $string,
         );
     }
 
@@ -49,12 +49,12 @@ class TypeTest extends TestCase
      */
     public function it_can_create_integer_type()
     {
-        $variable = 1;
+        $integer = 1;
 
-        $variable = type($variable, Type::INTEGER);
+        $integer = type($integer, Type::INTEGER);
 
         $this->assertIsInt(
-            $variable,
+            $integer,
         );
     }
 
@@ -65,12 +65,12 @@ class TypeTest extends TestCase
      */
     public function it_can_create_float_type()
     {
-        $variable = 1.23;
+        $float = 1.23;
 
-        $variable = type($variable, Type::FLOAT);
+        $float = type($float, Type::FLOAT);
 
         $this->assertIsFloat(
-            $variable,
+            $float,
         );
     }
 
@@ -81,12 +81,12 @@ class TypeTest extends TestCase
      */
     public function it_can_create_boolean_type()
     {
-        $variable = true;
+        $boolean = true;
 
-        $variable = type($variable, Type::BOOLEAN);
+        $boolean = type($boolean, Type::BOOLEAN);
 
         $this->assertIsBool(
-            $variable,
+            $boolean,
         );
     }
 
@@ -97,12 +97,12 @@ class TypeTest extends TestCase
      */
     public function it_can_create_array_type()
     {
-        $variable = [1,2,3,4];
+        $array = [1,2,3,4];
 
-        $variable = type($variable, Type::ARRAY);
+        $array = type($array, Type::ARRAY);
 
         $this->assertIsArray(
-            $variable,
+            $array,
         );
     }
 
