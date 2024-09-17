@@ -1,11 +1,11 @@
 {
-    "name": "rayblair/collection-type",
-    "description": "This is my package collection-type",
+    "name": "rayblair/type-safety",
+    "description": "This is my package type-safety",
     "keywords": [
         "rayblair",
-        "collection-type"
+        "type-safety"
     ],
-    "homepage": "https://github.com/rayblair/collection-type",
+    "homepage": "https://github.com/rayblair/type-safety",
     "license": "MIT",
     "authors": [
         {
@@ -24,13 +24,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Rayblair\\CollectionType\\": "src"
+            "Rayblair\\ArrayType\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rayblair\\CollectionType\\Tests\\": "tests"
-        }
+            "Rayblair\\ArrayType\\Tests\\": "tests"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "scripts": {
         "test": "vendor/bin/phpunit",

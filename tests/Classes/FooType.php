@@ -1,6 +1,6 @@
 <?php
 
-namespace Rayblair\CollectionType\Tests\Classes;
+namespace Rayblair\ArrayType\Tests\Classes;
 
 /**
  * Represents a FooType entity with an ID and a name.

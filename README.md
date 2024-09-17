@@ -1,22 +1,22 @@
-# CollectionType
+# ArrayType
 
-This package provides type-safe collections in PHP, allowing you to manage collections of a specific object type. It enforces runtime type safety by ensuring that only instances of the defined class can be added to the collection. This makes it easier to work with strongly-typed collections and ensures data integrity throughout your application.
+This package provides a way to maintain type-safety using helper methods and arrays in PHP, allowing you to manage variables and arrays of a specific primitive and object types. It enforces runtime type safety by ensuring that only instances of the defined class can be added to the variable and array. This makes it easier to work with strongly-typed arrays and ensures data integrity throughout your application.
 
 ## Installation
 
 You can install the package via Composer:
 
 ```bash
-composer require rayblair/collection-type
+composer require rayblair/type-safety
 ```
 
 ## Usage
 
-Here’s an example demonstrating how to use the `CollectionType` class with a custom object type:
+Here’s an example demonstrating how to use the `ArrayType` class with a custom object type:
 
 ### Define a Custom Type
 
-First, create a class to define the objects you want to store in the collection. In this example, we define a `FooType` class with `id` and `name` properties.
+First, create a class to define the objects you want to store in the array. In this example, we define a `FooType` class with `id` and `name` properties.
 
 ```php
 class FooType
@@ -26,29 +26,29 @@ class FooType
 }
 ```
 
-### Create a Type-Safe Collection
+### Create a Type-Safe Array
 
-Now, create a collection class that extends `CollectionType` and specify the object type it will hold. In this case, `FooCollection` is defined to hold `FooType` objects.
+Now, create a array class that extends `ArrayType` and specify the object type it will hold. In this case, `FooArrayType` is defined to hold `FooType` objects.
 
 ```php
-class FooCollection extends CollectionType
+class FooArrayType extends ArrayType
 {
     public $type = FooType::class;
 }
 ```
 
-### Adding Items to the Collection
+### Adding Items to the Array
 
-Once your collection is set up, you can start adding items to it. The collection will automatically validate that each item is of the correct type.
+Once your array is set up, you can start adding items to it. The array will automatically validate that each item is of the correct type.
 
 ```php
-$collection = new FooCollection();
+$array = new FooArrayType();
 
-$collection[] = ['id' => 1, 'name' => 'Ray'];
-$collection[] = ['id' => 2, 'name' => 'Bob'];
-$collection[] = ['id' => 3, 'name' => 'Alice'];
+$array[] = ['id' => 1, 'name' => 'Ray'];
+$array[] = ['id' => 2, 'name' => 'Bob'];
+$array[] = ['id' => 3, 'name' => 'Alice'];
 
-print_r($collection->toArray());
+print_r($array->toArray());
 ```
 
 ### Output:
@@ -63,17 +63,17 @@ print_r($collection->toArray());
 
 ## Handling Invalid Data
 
-The `CollectionType` class enforces strict type safety, so invalid data will result in errors.
+The `ArrayType` class enforces strict type safety, so invalid data will result in errors.
 
 ### Example 1: Invalid Type
 
 If you try to add an item where the `id` is not an integer, a `TypeError` will be thrown.
 
 ```php
-$collection = new FooCollection();
+$array = new FooArrayType();
 
 // This will throw a TypeError because the 'id' should be an integer.
-$collection[] = ['id' => '4', 'name' => 'Dave'];
+$array[] = ['id' => '4', 'name' => 'Dave'];
 ```
 
 ### Example 2: Missing Parameters
@@ -81,10 +81,10 @@ $collection[] = ['id' => '4', 'name' => 'Dave'];
 If you omit required parameters, such as `id`, an `ArgumentCountError` will be thrown.
 
 ```php
-$collection = new FooCollection();
+$array = new FooArrayType();
 
 // This will throw an ArgumentCountError because the 'id' is missing.
-$collection[] = ['name' => 'Gary'];
+$array[] = ['name' => 'Gary'];
 ```
 
 ## Testing

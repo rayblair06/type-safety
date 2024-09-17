@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Rayblair\CollectionType;
+namespace Rayblair\ArrayType;
 
 use ArgumentCountError;
 use ArrayObject;
 use TypeError;
 
 /**
- * Abstract class to manage a collection of a specific type.
+ * Abstract class to manage a array of a specific type.
  * Enforces runtime type safety by ensuring that only instances of the specified type can be added.
  */
-abstract class CollectionType extends ArrayObject
+abstract class ArrayType extends ArrayObject
 {
     /**
-     * The fully qualified class name of the objects this collection can store.
+     * The fully qualified class name of the objects this array can store.
      * Must be defined in subclasses to enable type validation.
      *
      * @var string|null
@@ -23,7 +23,7 @@ abstract class CollectionType extends ArrayObject
     public $type = null;
 
     /**
-     * Adds an item to the collection at the given index after validating and converting it to the defined type.
+     * Adds an item to the array at the given index after validating and converting it to the defined type.
      * The value is treated as constructor arguments to create an instance of the defined type.
      *
      * @param  mixed  $index   Optional index at which to set the value. If null, appends the value.
@@ -40,7 +40,7 @@ abstract class CollectionType extends ArrayObject
     }
 
     /**
-     * Appends an item to the collection after validating and converting it to the defined type.
+     * Appends an item to the array after validating and converting it to the defined type.
      * The value is treated as constructor arguments to create an instance of the defined type.
      *
      * @param  mixed  $value  An array of arguments used to instantiate the object of the defined type.
@@ -56,10 +56,10 @@ abstract class CollectionType extends ArrayObject
     }
 
     /**
-     * Converts the collection to an array, where each entry is an associative array representing
-     * the properties of an object in the collection.
+     * Converts the array to an array, where each entry is an associative array representing
+     * the properties of an object in the array.
      *
-     * @return array An array of associative arrays, each corresponding to an object in the collection.
+     * @return array An array of associative arrays, each corresponding to an object in the array.
      */
     public function toArray(): array
     {
