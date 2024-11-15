@@ -1,6 +1,6 @@
 {
     "name": "rayblair/type-safety",
-    "description": "This is my package type-safety",
+    "description": "Type Safety is a PHP package that enforces strict type safety when working with mixed arrays and variables.",
     "keywords": [
         "rayblair",
         "type-safety"
@@ -25,15 +25,15 @@
     "autoload": {
         "psr-4": {
             "Rayblair\\ArrayType\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Rayblair\\ArrayType\\Tests\\": "tests"
         },
         "files": [
             "src/helpers.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rayblair\\ArrayType\\Tests\\": "tests"
+        }
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
