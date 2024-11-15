@@ -2,13 +2,11 @@
 
 namespace Rayblair\ArrayType\Tests;
 
-use stdClass;
-use TypeError;
-use ArgumentCountError;
-use Rayblair\ArrayType\Type;
 use PHPUnit\Framework\TestCase;
 use Rayblair\ArrayType\Tests\Classes\FooType;
-use Rayblair\ArrayType\Tests\Classes\FooArrayType;
+use Rayblair\ArrayType\Type;
+use stdClass;
+use TypeError;
 
 class TypeTest extends TestCase
 {

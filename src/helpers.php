@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-use TypeError;
 use Rayblair\ArrayType\Type;
 
-if (!function_exists('type')) {
+if (! function_exists('type')) {
     /**
      * Validates that the provided variable matches the expected type.
      *
@@ -20,7 +19,7 @@ if (!function_exists('type')) {
     {
         // Check if the variable is an object and ensure it's an instance of the expected class
         if (is_object($variable)) {
-            if (!$variable instanceof $type) {
+            if (! $variable instanceof $type) {
                 $actualType = get_class($variable);
 
                 throw new TypeError("Expected instance of {$type}, instance of {$actualType} given.");
@@ -41,7 +40,7 @@ if (!function_exists('type')) {
         };
 
         // If the type check fails, throw a TypeError
-        if (!$check) {
+        if (! $check) {
             $actualType = gettype($variable);
 
             throw new TypeError("Expected type {$type}, {$actualType} given.");
