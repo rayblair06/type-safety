@@ -73,9 +73,31 @@ class FooArrayType extends ArrayType
 }
 ```
 
-#### Step 3: Adding Items to the Array
+#### Step 3: Constructing Type Safe Arrays
 
-Once your type-safe array is set up, you can add items to it. The array will automatically validate that each item matches the defined type.
+Once your type-safe array is set up, you can pass safely pass values in a number of ways that will validate that each value matches the defined type.
+##### 3.1: Constructor
+
+```php
+$array = new FooArrayType([
+    ['id' => 1, 'name' => 'Ray'],
+    ['id' => 2, 'name' => 'Bob'],
+    ['id' => 3, 'name' => 'Alice']
+]);
+
+print_r($array->toArray());
+```
+
+### Output:
+
+```php
+[
+    ['id' => 1, 'name' => 'Ray'],
+    ['id' => 2, 'name' => 'Bob'],
+    ['id' => 3, 'name' => 'Alice'],
+]
+```
+##### 3.2: Appends
 
 ```php
 $array = new FooArrayType();
@@ -83,6 +105,27 @@ $array = new FooArrayType();
 $array[] = ['id' => 1, 'name' => 'Ray'];
 $array[] = ['id' => 2, 'name' => 'Bob'];
 $array[] = ['id' => 3, 'name' => 'Alice'];
+
+print_r($array->toArray());
+```
+
+### Output:
+
+```php
+[
+    ['id' => 1, 'name' => 'Ray'],
+    ['id' => 2, 'name' => 'Bob'],
+    ['id' => 3, 'name' => 'Alice'],
+]
+```
+##### 3.3: Offset
+
+```php
+$array = new FooArrayType();
+
+$array[0] = ['id' => 1, 'name' => 'Ray'];
+$array[1] = ['id' => 2, 'name' => 'Bob'];
+$array[2] = ['id' => 3, 'name' => 'Alice'];
 
 print_r($array->toArray());
 ```
